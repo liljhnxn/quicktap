@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="tapDarkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1322"/>
+      <stop offset="100%" stop-color="#06080e"/>
+    </linearGradient>
+    <linearGradient id="fingerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#d1fae5"/>
+      <stop offset="100%" stop-color="#00ff66"/>
+    </linearGradient>
+    <filter id="neonPulse" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#tapDarkBg)" stroke="#00ff66" stroke-width="2" stroke-opacity="0.6"/>
+  <circle cx="32" cy="22" r="17" fill="none" stroke="#00ff66" stroke-width="2" stroke-opacity="0.3" stroke-dasharray="4 3"/>
+  <circle cx="32" cy="22" r="11" fill="none" stroke="#00ff66" stroke-width="2.5" stroke-opacity="0.7" filter="url(#neonPulse)"/>
+  <circle cx="32" cy="22" r="4.5" fill="#00ff66" filter="url(#neonPulse)"/>
+
+  <path d="M29 23 C29 19 35 19 35 23 L35 34 C35 35 36 36 37 36 C38 36 39 35 39 34 L39 31 C39 29.5 42 29.5 42 31 L42 34 C42 35.5 45 35.5 45 37 L45 42 C45 49 39 54 31 54 C23 54 19 48 19 43 L19 37 C19 35 22 35 22 37 L22 41 C22 42 24 42 24 41 L24 37 C24 35 27 35 27 37 L27 34 L29 23 Z" 
+        fill="url(#fingerGrad)" 
+        stroke="#06080e" 
+        stroke-width="1.2" 
+        stroke-linejoin="round"
+        filter="url(#neonPulse)" />
+</svg>
