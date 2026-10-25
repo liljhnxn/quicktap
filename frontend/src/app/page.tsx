@@ -7,7 +7,7 @@ import { PersonalStats } from "@/components/PersonalStats";
 import { Leaderboard } from "@/components/Leaderboard";
 import { Footer } from "@/components/Footer";
 import { QUICK_TAP_ADDRESS } from "@/config/contract";
-import { Zap, HelpCircle, Trophy, ShieldCheck, AlertCircle } from "lucide-react";
+import { Zap, HelpCircle, Trophy, ShieldCheck, AlertCircle, ExternalLink } from "lucide-react";
 
 export default function Home() {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
@@ -32,7 +32,7 @@ export default function Home() {
             <div>
               <p className="font-bold text-amber-300">Contract Address Not Configured</p>
               <p className="mt-0.5 text-amber-200/90">
-                To enable on-chain score saving on Botchain Testnet, deploy the contract using{" "}
+                To enable on-chain score saving on Botchain Mainnet, deploy the contract using{" "}
                 <code className="bg-black/40 px-1.5 py-0.5 rounded font-mono text-amber-300">
                   npm run deploy
                 </code>{" "}
@@ -52,16 +52,38 @@ export default function Home() {
 
         {/* Hero Section */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00ff66]/10 border border-[#00ff66]/20 text-[#00ff66] text-xs font-semibold uppercase tracking-wider mb-3">
-            <Zap className="w-3.5 h-3.5" />
-            <span>Botchain Reaction Challenge</span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00ff66]/10 border border-[#00ff66]/25 text-[#00ff66] text-xs font-semibold uppercase tracking-wider mb-3">
+            <img
+              src="/botchain-logo.png"
+              alt="BOT Chain"
+              className="w-4 h-4 rounded object-contain shrink-0"
+            />
+            <span>BOT Chain Reaction Challenge</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-black tracking-tight text-white uppercase">
             Test Your Reflexes. <span className="text-[#00ff66]">Save Your Best.</span>
           </h1>
           <p className="mt-2 text-sm sm:text-base text-gray-400 max-w-xl mx-auto">
-            Wait for green, tap instantly, and lock your reaction speed into the immutable Botchain Testnet ledger.
+            Wait for green, tap instantly, and lock your reaction speed into the immutable BOT Chain ledger.
           </p>
+          <div className="mt-3.5 flex items-center justify-center gap-2 text-xs font-mono text-gray-400 flex-wrap">
+            <span className="text-gray-500">Mainnet Contract:</span>
+            <a
+              href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#00ff66] hover:underline flex items-center gap-1.5 bg-gray-900/90 hover:bg-gray-800 px-3 py-1 rounded-lg border border-gray-800 hover:border-[#00ff66]/40 transition"
+              title="View verified contract on BOT Chain Explorer"
+            >
+              <img
+                src="/botchain-logo.png"
+                alt="BOT Chain"
+                className="w-3.5 h-3.5 rounded object-contain shrink-0"
+              />
+              <span className="truncate max-w-[220px] sm:max-w-none">{QUICK_TAP_ADDRESS}</span>
+              <ExternalLink className="w-3 h-3 text-[#00ff66]" />
+            </a>
+          </div>
         </div>
 
         {/* Game Arena & Side Panels */}

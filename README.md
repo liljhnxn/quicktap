@@ -1,12 +1,12 @@
 # QuickTap ⚡ — Web3 Reaction Time Game
 
-QuickTap is a Web3 reaction-time testing game built for **Botchain Testnet**. Players test their reflexes by waiting for a randomized signal, clicking as quickly as possible upon green, measuring their reaction time in milliseconds, and permanently recording their verified personal best scores directly to the Botchain smart contract.
+QuickTap is a Web3 reaction-time testing game built for **Botchain Mainnet**. Players test their reflexes by waiting for a randomized signal, clicking as quickly as possible upon green, measuring their reaction time in milliseconds, and permanently recording their verified personal best scores directly to the Botchain smart contract.
 
 ---
 
 ## 🎮 Game Mechanics
 
-1. **Wallet Connection**: Connect any Web3 wallet (e.g., MetaMask, Rabby). The app automatically validates that you are on **Botchain Testnet (Chain ID 968)** and prompts a 1-click network switch if not.
+1. **Wallet Connection**: Connect any Web3 wallet (e.g., MetaMask, Rabby). The app automatically validates that you are on **Botchain Mainnet (Chain ID 677)** and prompts a 1-click network switch if not.
 2. **Start Round**: Click **"Start Game"** or tap the arena.
 3. **Wait for Green**: The arena displays a red background with `"Wait for green..."` for a randomized delay between **2 and 5 seconds**.
 4. **Early Click Detection**: Clicking before the arena turns green triggers `"Too early!"` and immediately cancels that round to prevent anticipatory clicking.
@@ -25,17 +25,19 @@ QuickTap is a Web3 reaction-time testing game built for **Botchain Testnet**. Pl
 
 ---
 
-## 🌐 Botchain Testnet Configuration
+## 🌐 Botchain Mainnet Configuration
 
 | Parameter | Value |
 |---|---|
-| **Network Name** | Botchain Testnet |
-| **Chain ID** | `968` |
-| **RPC URL** | [https://rpc.bohr.life](https://rpc.bohr.life/) |
-| **Native Currency** | BOT |
+| **Network Name** | Botchain |
+| **Chain ID** | `677` |
+| **RPC URL** | [https://rpc.botchain.ai](https://rpc.botchain.ai/) |
+| **Native Token** | BOT |
 | **Currency Symbol** | `BOT` |
 | **Decimals** | 18 |
-| **Block Explorer** | [https://scan.bohr.life](https://scan.bohr.life/) |
+| **Total Supply** | 150 Million |
+| **Block Explorer** | [https://scan.botchain.ai](https://scan.botchain.ai/) |
+| **Mainnet Contract** | [`0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA`](https://scan.botchain.ai/address/0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA) |
 
 ---
 
@@ -56,10 +58,10 @@ Quick Tap/
 ├── contracts/
 │   └── QuickTap.sol          # Solidity smart contract
 ├── scripts/
-│   └── deploy.ts             # Botchain Testnet deployment script
+│   └── deploy.ts             # Botchain Mainnet deployment script
 ├── test/
 │   └── QuickTap.test.ts      # Comprehensive Hardhat contract tests
-├── hardhat.config.ts         # Hardhat configuration (Chain ID 968)
+├── hardhat.config.ts         # Hardhat configuration (Chain ID 677)
 ├── package.json              # Root package configuration
 ├── .env.example              # Root environment template (Private key)
 └── frontend/                 # Next.js web application
@@ -69,15 +71,15 @@ Quick Tap/
     │   │   ├── page.tsx      # Main application page
     │   │   └── globals.css   # Dark neon gaming design system
     │   ├── components/
-    │   │   ├── Navbar.tsx    # Navigation, network badge, wallet connection
-    │   │   ├── GameCard.tsx  # Central reaction-time interactive arena
+    │   │   ├── Navbar.tsx    # Navigation, network badge, wallet connection, explorer link
+    │   │   ├── GameCard.tsx  # Central reaction-time interactive arena & contract explorer
     │   │   ├── PersonalStats.tsx # Real-time personal stats from contract
     │   │   ├── Leaderboard.tsx   # On-chain player rankings
     │   │   └── Footer.tsx    # Explorer links and network status
     │   └── config/
-    │       ├── chain.ts      # Botchain Testnet chain definition
+    │       ├── chain.ts      # Botchain Mainnet chain definition
     │       ├── wagmi.ts      # Wagmi client configuration
-    │       └── contract.ts   # QuickTap ABI and contract address
+    │       └── contract.ts   # QuickTap ABI and deployed mainnet contract address
     ├── .env.example          # Frontend environment template
     └── package.json          # Frontend dependencies
 ```
@@ -115,22 +117,22 @@ Expected output:
   6 passing (3s)
 ```
 
-### 3. Deploy Smart Contract to Botchain Testnet
+### 3. Deploy Smart Contract to Botchain Mainnet
 
 1. Copy `.env.example` to `.env`:
    ```bash
    cp .env.example .env
    ```
-2. Open `.env` and fill in your deployer wallet private key (ensure the wallet has testnet `BOT` tokens from the Botchain faucet):
+2. Open `.env` and fill in your deployer wallet private key:
    ```env
    PRIVATE_KEY=0xYourPrivateKeyHere
-   BOTCHAIN_RPC_URL=https://rpc.bohr.life
+   BOTCHAIN_RPC_URL=https://rpc.botchain.ai
    ```
 3. Run the deployment script:
    ```bash
    npm run deploy
    ```
-4. Copy the logged **Contract Address** (e.g., `0x1234...5678`).
+4. The script outputs the deployed contract address and automatically updates `frontend/.env.local`.
 
 ---
 
@@ -141,19 +143,15 @@ Expected output:
    cd frontend
    npm install
    ```
-2. Copy `.env.example` to `.env.local`:
-   ```bash
-   cp .env.example .env.local
-   ```
-3. Update `frontend/.env.local` with your deployed contract address:
+2. Update `frontend/.env.local`:
    ```env
-   NEXT_PUBLIC_QUICK_TAP_CONTRACT_ADDRESS=0xYourDeployedContractAddressHere
+   NEXT_PUBLIC_QUICK_TAP_CONTRACT_ADDRESS=0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA
    ```
-4. Start the development server:
+3. Start the development server:
    ```bash
    npm run dev
    ```
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
@@ -165,7 +163,7 @@ Expected output:
    - **Root Directory**: Select `frontend`
    - **Framework Preset**: Next.js
 4. In **Environment Variables**, add:
-   - `NEXT_PUBLIC_QUICK_TAP_CONTRACT_ADDRESS`: The deployed `QuickTap` contract address on Botchain Testnet.
+   - `NEXT_PUBLIC_QUICK_TAP_CONTRACT_ADDRESS`: `0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA`
 5. Click **"Deploy"**. Vercel will automatically build and publish your Next.js application with a production URL.
 
 ---

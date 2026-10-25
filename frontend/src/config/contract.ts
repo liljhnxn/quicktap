@@ -1,5 +1,5 @@
 export const QUICK_TAP_ADDRESS = (process.env.NEXT_PUBLIC_QUICK_TAP_CONTRACT_ADDRESS ||
-  "0x002dbB745A32283b50645dfFa379250c0498945f") as `0x${string}`;
+  "0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA") as `0x${string}`;
 
 export const QUICK_TAP_ABI = [
   {

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useReadContract } from "wagmi";
 import { createPublicClient, http } from "viem";
-import { botchainTestnet } from "@/config/chain";
+import { botchainMainnet } from "@/config/chain";
 import { QUICK_TAP_ADDRESS, QUICK_TAP_ABI } from "@/config/contract";
 import { Trophy, Medal, ExternalLink, RefreshCw, AlertCircle } from "lucide-react";
 
@@ -44,8 +44,8 @@ export function Leaderboard({ refreshTrigger }: LeaderboardProps) {
     try {
       setIsLoadingScores(true);
       const publicClient = createPublicClient({
-        chain: botchainTestnet,
-        transport: http("https://rpc.bohr.life"),
+        chain: botchainMainnet,
+        transport: http("https://rpc.botchain.ai"),
       });
 
       const promises = addresses.map(async (addr) => {
@@ -116,7 +116,7 @@ export function Leaderboard({ refreshTrigger }: LeaderboardProps) {
       <div className="bg-[#121828] border border-gray-800/80 rounded-xl p-3 mb-4 flex items-start gap-2.5 text-xs text-gray-400">
         <AlertCircle className="w-4 h-4 text-amber-400/80 shrink-0 mt-0.5" />
         <p>
-          Scores are submitted directly from users&apos; browsers to Botchain Testnet. Because the EVM cannot measure real-world physical reaction time, scores represent client-reported metrics.
+          Scores are submitted directly from users&apos; browsers to Botchain Mainnet. Because the EVM cannot measure real-world physical reaction time, scores represent client-reported metrics.
         </p>
       </div>
 
@@ -124,7 +124,7 @@ export function Leaderboard({ refreshTrigger }: LeaderboardProps) {
       {isPlayersLoading || isLoadingScores ? (
         <div className="py-12 text-center text-sm text-gray-400 flex flex-col items-center gap-2">
           <RefreshCw className="w-6 h-6 animate-spin text-[#00ff66]" />
-          <span>Querying verified player records from Botchain Testnet...</span>
+          <span>Querying verified player records from Botchain Mainnet...</span>
         </div>
       ) : entries.length === 0 ? (
         <div className="py-10 text-center text-sm text-gray-500 flex flex-col items-center gap-2">
@@ -182,13 +182,18 @@ export function Leaderboard({ refreshTrigger }: LeaderboardProps) {
                     </td>
                     <td className="py-3.5 px-2 whitespace-nowrap text-center">
                       <a
-                        href={`https://scan.bohr.life/address/${entry.player}`}
+                        href={`https://scan.botchain.ai/address/${entry.player}`}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-gray-500 hover:text-[#00ff66] transition inline-block"
-                        title="View address on Bohr Explorer"
+                        className="text-gray-500 hover:text-[#00ff66] transition inline-flex items-center gap-1"
+                        title="View address on BOT Chain Explorer"
                       >
-                        <ExternalLink className="w-3.5 h-3.5" />
+                        <img
+                          src="/botchain-logo.png"
+                          alt="BOT Chain"
+                          className="w-3.5 h-3.5 rounded object-contain"
+                        />
+                        <ExternalLink className="w-3 h-3" />
                       </a>
                     </td>
                   </tr>

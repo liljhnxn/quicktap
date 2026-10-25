@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import { useAccount, useConnect, useDisconnect, useChainId, useSwitchChain } from "wagmi";
-import { botchainTestnet } from "@/config/chain";
-import { Wallet, LogOut, Zap, AlertTriangle, CheckCircle2, ChevronDown } from "lucide-react";
+import { botchainMainnet } from "@/config/chain";
+import { QUICK_TAP_ADDRESS } from "@/config/contract";
+import { Wallet, LogOut, Zap, AlertTriangle, CheckCircle2, ChevronDown, ExternalLink, Globe } from "lucide-react";
 
 export function Navbar() {
   const { address, isConnected } = useAccount();
@@ -13,7 +14,7 @@ export function Navbar() {
   const { switchChain, isPending: isSwitching } = useSwitchChain();
   const [showDropdown, setShowDropdown] = useState(false);
 
-  const isWrongNetwork = isConnected && chainId !== botchainTestnet.id;
+  const isWrongNetwork = isConnected && chainId !== botchainMainnet.id;
 
   const shortenAddress = (addr: string) => {
     return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
@@ -42,10 +43,10 @@ export function Navbar() {
                 QUICK<span className="text-[#00ff66]">TAP</span>
               </span>
               <span className="text-[10px] uppercase font-bold tracking-widest px-2 py-0.5 rounded-full bg-[#00ff66]/10 border border-[#00ff66]/30 text-[#00ff66]">
-                Testnet
+                Mainnet
               </span>
             </div>
-            <p className="text-xs text-gray-400 font-medium">Test your reflexes. Save your best.</p>
+            <p className="text-xs text-gray-400 font-medium">Test reflexes on <span className="text-gray-300 font-semibold">BOT Chain</span></p>
           </div>
         </div>
 
@@ -57,7 +58,7 @@ export function Navbar() {
               {isWrongNetwork ? (
                 <button
                   id="switch-network-btn"
-                  onClick={() => switchChain({ chainId: botchainTestnet.id })}
+                  onClick={() => switchChain({ chainId: botchainMainnet.id })}
                   disabled={isSwitching}
                   className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-red-950/60 border border-red-500/50 text-red-300 text-xs font-semibold hover:bg-red-900/60 transition cursor-pointer"
                 >
@@ -66,15 +67,56 @@ export function Navbar() {
                 </button>
               ) : (
                 <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/80 border border-gray-800 text-xs text-gray-300">
+                  <img
+                    src="/botchain-logo.png"
+                    alt="BOT Chain"
+                    className="w-3.5 h-3.5 rounded object-contain shrink-0"
+                  />
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00ff66] opacity-75"></span>
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00ff66]"></span>
                   </span>
-                  <span className="font-medium">Botchain Testnet (968)</span>
+                  <span className="font-medium">BOT Chain (677)</span>
                 </div>
               )}
             </div>
           )}
+
+          {/* BOT Chain Website Link with Logo in front */}
+          <a
+            id="navbar-botchain-website"
+            href="https://botchain.ai"
+            target="_blank"
+            rel="noreferrer"
+            className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/90 hover:bg-gray-800 border border-gray-700/80 hover:border-[#00ff66]/50 text-xs text-gray-200 hover:text-white transition cursor-pointer"
+            title="BOT Chain Official Website (botchain.ai)"
+          >
+            <img
+              src="/botchain-logo.png"
+              alt="BOT Chain"
+              className="w-4 h-4 rounded object-contain shrink-0"
+            />
+            <span>botchain.ai</span>
+            <ExternalLink className="w-3 h-3 text-gray-400" />
+          </a>
+
+          {/* BOT Chain Explorer Link with Logo in front */}
+          <a
+            id="navbar-explorer-link"
+            href="https://scan.botchain.ai"
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/90 hover:bg-gray-800 border border-gray-700/80 hover:border-[#00ff66]/50 text-xs text-gray-200 hover:text-white transition cursor-pointer"
+            title="BOT Chain Explorer (scan.botchain.ai)"
+          >
+            <img
+              src="/botchain-logo.png"
+              alt="BOT Chain Explorer"
+              className="w-4 h-4 rounded object-contain shrink-0"
+            />
+            <span>Explorer</span>
+            <ExternalLink className="w-3 h-3 text-[#00ff66]" />
+          </a>
 
           {/* Wallet Button */}
           {!isConnected ? (

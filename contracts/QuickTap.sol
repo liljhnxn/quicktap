@@ -3,7 +3,7 @@ pragma solidity ^0.8.24;
 
 /**
  * @title QuickTap
- * @dev Reaction-time score recording smart contract for Botchain Testnet.
+ * @dev Reaction-time score recording smart contract for Botchain.
  * Note: Reaction times are measured in browser and submitted by the user.
  * Scores are subject to client-side timing accuracy and can be manipulated.
  */

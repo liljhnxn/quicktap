@@ -14,10 +14,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "QuickTap | Web3 Reaction Time Game on Botchain Testnet",
+  title: "QuickTap | Web3 Reaction Time Game on Botchain Mainnet",
   description:
-    "Test your reflexes. Measure your reaction time in milliseconds and record your verified personal best score on Botchain Testnet.",
-  keywords: ["QuickTap", "Web3 Game", "Botchain Testnet", "Solidity", "Reaction Time", "BOT"],
+    "Test your reflexes. Measure your reaction time in milliseconds and record your verified personal best score on Botchain Mainnet.",
+  keywords: ["QuickTap", "Web3 Game", "Botchain", "Botchain Mainnet", "Solidity", "Reaction Time", "BOT"],
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",

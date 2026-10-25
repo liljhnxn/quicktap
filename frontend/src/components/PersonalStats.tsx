@@ -63,7 +63,7 @@ export function PersonalStats({ refreshTrigger }: PersonalStatsProps) {
       {!isConnected ? (
         <div className="py-6 text-center text-sm text-gray-400 flex flex-col items-center gap-2">
           <AlertCircle className="w-7 h-7 text-gray-500" />
-          <p>Connect your wallet to record and view your verified personal stats on Botchain.</p>
+          <p>Connect your wallet to record and view your verified personal stats on BOT Chain.</p>
         </div>
       ) : (
         <div className="space-y-4">

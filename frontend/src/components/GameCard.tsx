@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { useAccount, useWriteContract, useWaitForTransactionReceipt, useChainId, useSwitchChain } from "wagmi";
 import { QUICK_TAP_ADDRESS, QUICK_TAP_ABI } from "@/config/contract";
-import { botchainTestnet } from "@/config/chain";
+import { botchainMainnet } from "@/config/chain";
 import { Zap, Play, RotateCcw, Save, CheckCircle2, AlertTriangle, ExternalLink, Loader2, Clock } from "lucide-react";
 
 type GameState = "idle" | "waiting" | "ready" | "early" | "result";
@@ -42,7 +42,7 @@ export function GameCard({ onScoreSaved }: GameCardProps) {
     hash: txHash,
   });
 
-  const isWrongNetwork = isConnected && chainId !== botchainTestnet.id;
+  const isWrongNetwork = isConnected && chainId !== botchainMainnet.id;
 
   // Clear timer helper
   const clearGameTimer = useCallback(() => {
@@ -111,7 +111,7 @@ export function GameCard({ onScoreSaved }: GameCardProps) {
     }
 
     if (isWrongNetwork) {
-      switchChain({ chainId: botchainTestnet.id });
+      switchChain({ chainId: botchainMainnet.id });
       return;
     }
 
@@ -146,14 +146,31 @@ export function GameCard({ onScoreSaved }: GameCardProps) {
   return (
     <div className="bg-[#0e1320]/90 border border-gray-800 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-md">
       {/* Top Bar inside card */}
-      <div className="flex items-center justify-between pb-4 border-b border-gray-800/80 mb-6">
+      <div className="flex items-center justify-between pb-4 border-b border-gray-800/80 mb-6 flex-wrap gap-2">
         <div className="flex items-center gap-2">
           <Clock className="w-5 h-5 text-[#00ff66]" />
           <h2 className="text-lg font-bold text-white tracking-wide">Reflex Test Arena</h2>
         </div>
-        <div className="text-xs text-gray-400 font-mono flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse"></span>
-          <span>Target: Wait for Green</span>
+        <div className="flex items-center gap-3">
+          <a
+            href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 text-xs text-gray-300 hover:text-white bg-gray-900/90 hover:bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-700/80 hover:border-[#00ff66]/50 transition cursor-pointer"
+            title="View verified contract on BOT Chain Explorer"
+          >
+            <img
+              src="/botchain-logo.png"
+              alt="BOT Chain"
+              className="w-3.5 h-3.5 rounded object-contain shrink-0"
+            />
+            <span>Contract Explorer</span>
+            <ExternalLink className="w-3 h-3 text-[#00ff66]" />
+          </a>
+          <div className="text-xs text-gray-400 font-mono flex items-center gap-1.5">
+            <span className="w-2 h-2 rounded-full bg-[#00ff66] animate-pulse"></span>
+            <span>Target: Wait for Green</span>
+          </div>
         </div>
       </div>
 
@@ -318,7 +335,7 @@ export function GameCard({ onScoreSaved }: GameCardProps) {
               <span>
                 {isWritePending
                   ? "Awaiting transaction signature in your wallet..."
-                  : "Transaction submitted! Waiting for Botchain Testnet block confirmation..."}
+                  : "Transaction submitted! Waiting for Botchain block confirmation..."}
               </span>
             </div>
           )}
@@ -328,10 +345,10 @@ export function GameCard({ onScoreSaved }: GameCardProps) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-emerald-300 bg-emerald-950/40 border border-emerald-500/40 p-3 rounded-lg">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Score successfully recorded to Botchain Testnet smart contract!</span>
+                <span>Score successfully recorded to Botchain smart contract!</span>
               </div>
               <a
-                href={`https://scan.bohr.life/tx/${txHash}`}
+                href={`https://scan.botchain.ai/tx/${txHash}`}
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-1 font-mono text-[#00ff66] hover:underline shrink-0"
