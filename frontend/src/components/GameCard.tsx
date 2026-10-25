@@ -153,18 +153,21 @@ export function GameCard({ onScoreSaved }: GameCardProps) {
         </div>
         <div className="flex items-center gap-3">
           <a
+            id="gamecard-contract-explorer-link"
             href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2 text-xs text-gray-300 hover:text-white bg-gray-900/90 hover:bg-gray-800 px-3 py-1.5 rounded-lg border border-gray-700/80 hover:border-[#00ff66]/50 transition cursor-pointer"
-            title="View verified contract on BOT Chain Explorer"
+            title={`View Contract ${QUICK_TAP_ADDRESS} on BOT Chain Explorer`}
           >
             <img
               src="/botchain-logo.png"
               alt="BOT Chain"
               className="w-3.5 h-3.5 rounded object-contain shrink-0"
             />
-            <span>Contract Explorer</span>
+            <span className="text-gray-400 font-medium hidden sm:inline">Contract:</span>
+            <span className="font-mono text-[#00ff66] font-bold hidden md:inline">0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA</span>
+            <span className="font-mono text-[#00ff66] font-bold md:hidden">0xc6eB...F5FA</span>
             <ExternalLink className="w-3 h-3 text-[#00ff66]" />
           </a>
           <div className="text-xs text-gray-400 font-mono flex items-center gap-1.5">

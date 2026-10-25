@@ -73,6 +73,24 @@ export function Footer() {
                   <span>BOT Chain Explorer</span>
                   <ExternalLink className="w-3.5 h-3.5 text-[#00ff66]" />
                 </a>
+
+                {/* BOT Chain Contract on Explorer Link */}
+                <a
+                  id="botchain-contract-explorer-btn"
+                  href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gray-900/90 hover:bg-gray-800 border border-gray-700/80 hover:border-[#00ff66]/60 text-xs sm:text-sm font-semibold text-white hover:text-[#00ff66] transition cursor-pointer shadow-md group"
+                  title={`View Verified Contract ${QUICK_TAP_ADDRESS} on BOT Chain Explorer`}
+                >
+                  <img
+                    src="/botchain-logo.png"
+                    alt="BOT Chain Contract"
+                    className="w-5 h-5 rounded object-contain shrink-0 group-hover:scale-110 transition-transform"
+                  />
+                  <span>Contract: 0xc6eB...F5FA</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-[#00ff66]" />
+                </a>
               </div>
             </div>
 
@@ -114,29 +132,26 @@ export function Footer() {
         </div>
 
         {/* Verified Mainnet Contract Address Link */}
-        <div className="flex items-center gap-2 font-mono text-[11px] text-gray-400 bg-gray-900/80 px-3.5 py-2 rounded-xl border border-gray-800">
+        <div className="flex items-center gap-2 font-mono text-[11px] text-gray-400 bg-gray-900/90 px-4 py-2 rounded-xl border border-gray-800 hover:border-[#00ff66]/50 transition">
           <img
             src="/botchain-logo.png"
             alt="BOT Chain"
             className="w-4 h-4 rounded object-contain shrink-0"
           />
           <ShieldCheck className="w-4 h-4 text-[#00ff66] shrink-0" />
-          <span className="text-gray-400 font-sans">Mainnet Contract:</span>
-          {isConfigured ? (
-            <a
-              id="footer-contract-link"
-              href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
-              target="_blank"
-              rel="noreferrer"
-              className="text-[#00ff66] hover:underline font-mono truncate max-w-[170px] sm:max-w-[260px]"
-              title={`View ${QUICK_TAP_ADDRESS} on BOT Chain Explorer`}
-            >
-              {QUICK_TAP_ADDRESS}
-            </a>
-          ) : (
-            <span className="text-amber-400">0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA</span>
-          )}
-          <ExternalLink className="w-3 h-3 text-[#00ff66] shrink-0" />
+          <span className="text-gray-400 font-sans font-semibold">Mainnet Contract:</span>
+          <a
+            id="footer-contract-link"
+            href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
+            target="_blank"
+            rel="noreferrer"
+            className="text-[#00ff66] hover:underline font-mono font-bold tracking-tight"
+            title={`View ${QUICK_TAP_ADDRESS} on BOT Chain Explorer`}
+          >
+            <span className="hidden sm:inline">{QUICK_TAP_ADDRESS}</span>
+            <span className="sm:hidden">{QUICK_TAP_ADDRESS.slice(0, 8)}...{QUICK_TAP_ADDRESS.slice(-6)}</span>
+          </a>
+          <ExternalLink className="w-3.5 h-3.5 text-[#00ff66] shrink-0" />
         </div>
       </div>
 

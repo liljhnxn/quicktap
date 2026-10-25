@@ -100,21 +100,22 @@ export function Navbar() {
             <ExternalLink className="w-3 h-3 text-gray-400" />
           </a>
 
-          {/* BOT Chain Explorer Link with Logo in front */}
+          {/* BOT Chain Contract Explorer Link with Logo and Contract Address */}
           <a
             id="navbar-explorer-link"
-            href="https://scan.botchain.ai"
+            href={`https://scan.botchain.ai/address/${QUICK_TAP_ADDRESS}`}
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-gray-900/90 hover:bg-gray-800 border border-gray-700/80 hover:border-[#00ff66]/50 text-xs text-gray-200 hover:text-white transition cursor-pointer"
-            title="BOT Chain Explorer (scan.botchain.ai)"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gray-900/90 hover:bg-gray-800 border border-gray-700/80 hover:border-[#00ff66]/50 text-xs text-gray-200 hover:text-white transition cursor-pointer"
+            title={`View Contract ${QUICK_TAP_ADDRESS} on BOT Chain Explorer`}
           >
             <img
               src="/botchain-logo.png"
               alt="BOT Chain Explorer"
               className="w-4 h-4 rounded object-contain shrink-0"
             />
-            <span>Explorer</span>
+            <span className="text-gray-400 font-medium hidden sm:inline">Contract:</span>
+            <span className="font-mono text-[#00ff66] font-bold">0xc6eB...F5FA</span>
             <ExternalLink className="w-3 h-3 text-[#00ff66]" />
           </a>
 
