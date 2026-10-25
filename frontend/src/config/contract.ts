@@ -1,7 +1,7 @@
 export const QUICK_TAP_MAINNET_ADDRESS = "0xc6eBADCe654F6152c8c0826fBdF9f7867753F5FA" as const;
 
-export const QUICK_TAP_ADDRESS = (process.env.NEXT_PUBLIC_QUICK_TAP_CONTRACT_ADDRESS ||
-  QUICK_TAP_MAINNET_ADDRESS) as `0x${string}`;
+// Hardcode mainnet address so stale Vercel dashboard environment variables cannot override it
+export const QUICK_TAP_ADDRESS: `0x${string}` = QUICK_TAP_MAINNET_ADDRESS;
 
 export const QUICK_TAP_ABI = [
   {
